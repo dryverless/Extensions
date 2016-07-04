@@ -1,7 +1,7 @@
 //
-//  GlobalExtensions.swift
+//  DeviceFeedbackUtils.swift
 //
-//  Created by Mark Hamilton on 3/23/16.
+//  Created by Mark Hamilton on 5/5/16.
 //  Copyright © 2016 dryverless. (http://www.dryverless.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,63 +23,11 @@
 // SOFTWARE.
 //
 
-import Foundation
 
-public extension NSObject {
+import AVFoundation
 
-    /*
-
-     example:
-
-     object.delay(2) {
-     // do after 2 seconds
-     }
-
-     */
-
-    public func delay(delay:Double, closure:(() -> Void)) {
-
-        dispatch_after(
-
-            dispatch_time(
-
-                DISPATCH_TIME_NOW,
-
-                Int64(delay * Double(NSEC_PER_SEC))
-
-            ), dispatch_get_main_queue(), closure)
-
-    }
-
-}
-
-/*
-
- example:
-
- delay(2) {
-   // do after 2 seconds
- }
-
-*/
-
-public func delay(delay:Double, closure:(() -> Void)) {
-
-    dispatch_after(
-
-        dispatch_time(
-
-            DISPATCH_TIME_NOW,
-
-            Int64(delay * Double(NSEC_PER_SEC))
-
-        ), dispatch_get_main_queue(), closure)
-
-}
-
-// Minimize 3
-public func min3(a: Int, b: Int, c: Int) -> Int {
-
-    return min( min(a, c), min(b, c))
-
+public func vibrate() {
+    
+    AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+    
 }
